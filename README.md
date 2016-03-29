@@ -16,8 +16,8 @@ On first run it will copy the sample config file if there isn't a config file al
 
 ## Optional environment variables
 
-* `UID` User ID of the lighttpd daemon account (default: 991).
-* `GID` Group ID of the lighttpd daemon account (default: 991).
+* `UID` User ID php fpm daemon account (default: 991).
+* `GID` Group ID php fpm daemon account (default: 991).
 
 ## License
 
