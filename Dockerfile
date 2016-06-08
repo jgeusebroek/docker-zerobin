@@ -1,13 +1,13 @@
-FROM gliderlabs/alpine:3.3
+FROM alpine:edge
 MAINTAINER Jeroen Geusebroek <me@jeroengeusebroek.nl>
 
 ARG VERSION=0.22
 
 ENV GID=991 UID=991
 
-RUN echo "@commuedge http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
- && echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN echo -e "@edge http://nl.alpinelinux.org/alpine/edge/main\n@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
  && apk -U add \
+    curl \
     nginx \
     php7-fpm@testing \
     php7-gd@testing \
@@ -15,11 +15,15 @@ RUN echo "@commuedge http://nl.alpinelinux.org/alpine/edge/community" >> /etc/ap
     php7-json@testing \
     php7-zlib@testing \
     supervisor \
-    tini@commuedge \
+    tini \
     ca-certificates \
     tar \
+
  && mkdir zerobin && cd zerobin \
- && wget -qO- https://github.com/elrido/ZeroBin/archive/$VERSION.tar.gz | tar xz --strip 1 \
+ && curl -L -o zerobin.tar.gz https://github.com/elrido/ZeroBin/archive/$VERSION.tar.gz \
+ && tar xvzf zerobin.tar.gz --strip 1 \
+ && rm zerobin.tar.gz \
+
  && mv cfg/conf.ini.sample /zerobin \
  && apk del tar ca-certificates \
  && rm -f /var/cache/apk/*
