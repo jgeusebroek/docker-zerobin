@@ -1,4 +1,5 @@
-# Docker Zerobin image 
+[![](https://images.microbadger.com/badges/image/jgeusebroek/zerobin.svg)](https://microbadger.com/images/jgeusebroek/zerobin "Get your own image badge on microbadger.com")
+# Docker Zerobin image
 
 A tiny image running [gliderlabs/docker-alpine](https://github.com/gliderlabs/docker-alpine) Linux and [Zerobin](https://github.com/elrido/ZeroBin).
 
